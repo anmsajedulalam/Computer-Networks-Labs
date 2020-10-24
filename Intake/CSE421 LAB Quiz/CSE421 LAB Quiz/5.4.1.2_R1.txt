@@ -1,0 +1,180 @@
+System Bootstrap, Version 15.1(4)M4, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2010 by cisco Systems, Inc.
+Total memory size = 512 MB - On-board = 512 MB, DIMM0 = 0 MB
+CISCO1941/K9 platform with 524288 Kbytes of main memory
+Main memory is configured to 64/-1(On-board/DIMM0) bit mode with ECC disabled
+
+Readonly ROMMON initialized
+
+program load complete, entry point: 0x80803000, size: 0x1b340
+program load complete, entry point: 0x80803000, size: 0x1b340
+
+IOS Image Load Test
+___________________
+Digitally Signed Release Software
+program load complete, entry point: 0x81000000, size: 0x2bb1c58
+Self decompressing the image :
+######################### [OK]
+Smart Init is enabled
+smart init is sizing iomem
+                  TYPE      MEMORY_REQ
+     Onboard devices &
+          buffer pools      0x01E8F000
+-----------------------------------------------
+                TOTAL:      0x01E8F000
+Rounded IOMEM up to: 32Mb.
+Using 6 percent iomem. [32Mb/512Mb]
+
+              Restricted Rights Legend
+Use, duplication, or disclosure by the Government is
+subject to restrictions as set forth in subparagraph
+(c) of the Commercial Computer Software - Restricted
+Rights clause at FAR sec. 52.227-19 and subparagraph
+(c) (1) (ii) of the Rights in Technical Data and Computer
+Software clause at DFARS sec. 252.227-7013.
+           cisco Systems, Inc.
+           170 West Tasman Drive
+           San Jose, California 95134-1706
+
+Cisco IOS Software, C1900 Software (C1900-UNIVERSALK9-M), Version 15.1(4)M4, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2012 by Cisco Systems, Inc.
+Compiled Thurs 5-Jan-12 15:41 by pt_team
+Image text-base: 0x2100F918, data-base: 0x24729040
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+Cisco CISCO1941/K9 (revision 1.0) with 491520K/32768K bytes of memory.
+Processor board ID FTX152400KS
+2 Gigabit Ethernet interfaces
+DRAM configuration is 64 bits wide with parity disabled.
+255K bytes of non-volatile configuration memory.
+249856K bytes of ATA System CompactFlash 0 (Read/Write)
+
+Press RETURN to get started!
+
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+
+R1>en
+R1#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#interface g0/1
+R1(config-if)#no shutdown
+
+R1(config-if)#exit
+R1(config)#interface g0/1.10
+R1(config-subif)#encapsulation 802dot1q
+                               ^
+% Invalid input detected at '^' marker.
+	
+R1(config-subif)#encapsulation dot1q
+% Incomplete command.
+R1(config-subif)#encapsulation dot1q vlan 10
+                                     ^
+% Invalid input detected at '^' marker.
+	
+R1(config-subif)#
+R1(config-subif)#exit
+R1(config)#interface g0/1.10
+R1(config-subif)#ip address 172.17.10.1 255.255.255.0
+
+% Configuring IP routing on a LAN subinterface is only allowed if that
+subinterface is already configured as part of an IEEE 802.10, IEEE 802.1Q,
+or ISL vLAN.
+
+R1(config-subif)#encapsulation dot1q
+% Incomplete command.
+R1(config-subif)#encapsulation dot1q access
+                                     ^
+% Invalid input detected at '^' marker.
+	
+R1(config-subif)#encapsulation dot1q vlan
+                                     ^
+% Invalid input detected at '^' marker.
+	
+R1(config-subif)#encapsulation dot1q vlan 10
+                                     ^
+% Invalid input detected at '^' marker.
+	
+R1(config-subif)#encapsulation dot1q access vlan99
+                                     ^
+% Invalid input detected at '^' marker.
+	
+R1(config-subif)#encapsulation dot1q vlan99
+                                     ^
+% Invalid input detected at '^' marker.
+	
+R1(config-subif)#encapsulation dot1q trunk
+                                     ^
+% Invalid input detected at '^' marker.
+	
+R1(config-subif)#encapsulation dot1q VLAN99
+                                     ^
+% Invalid input detected at '^' marker.
+	
+R1(config-subif)#encapsulation dot1q exit
+                                     ^
+% Invalid input detected at '^' marker.
+	
+R1(config-subif)#exit
+R1(config)#interface g0/1.10
+R1(config-subif)#encapsulation dot1q 10
+R1(config-subif)#ip address 172.17.10.1 255.255.255.0
+R1(config-subif)#exit
+R1(config)#ip address 172.17.10.1 255.255.255.0
+               ^
+% Invalid input detected at '^' marker.
+	
+R1(config)#interface g0/1.20
+R1(config-subif)#encapsulation dot1q 20
+R1(config-subif)#ip address 172.17.20.1 255.255.255.0
+R1(config-subif)#exit
+R1(config)#encapsulation dot1q 30
+             ^
+% Invalid input detected at '^' marker.
+	
+R1(config)#interface g0/1.30
+R1(config-subif)#encapsulation dot1q 30
+R1(config-subif)#ip address 172.17.30.1 255.255.255.0
+R1(config-subif)#exiit
+                    ^
+% Invalid input detected at '^' marker.
+	
+R1(config-subif)#exit
+R1(config)#interface g0/1.88
+R1(config-subif)#encapsulation dot1q 88
+R1(config-subif)#ip address 172.17.88.1 255.255.255.0
+R1(config-subif)#exit
+R1(config)#interface g0/1.99
+R1(config-subif)#encapsulation dot1q 99
+R1(config-subif)#ip address 172.17.99.1 255.255.255.0
+R1(config-subif)#exit
+R1(config)#intefrace g0/1
+               ^
+% Invalid input detected at '^' marker.
+	
+R1(config)#intefrace g0/0
+               ^
+% Invalid input detected at '^' marker.
+	
+R1(config)#
+R1#
+R1#
+R1#
+R1#

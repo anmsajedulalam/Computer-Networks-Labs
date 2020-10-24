@@ -1,0 +1,41 @@
+User Access Verification
+
+Password: 
+
+Branch>en
+Password: 
+Password: 
+
+Branch>en
+Password: 
+Password: 
+Password: 
+Branch#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Branch(config)#int fa0/0
+Branch(config-if)#ip add 192.168.2.193 255.255.255.192
+Branch(config-if)#exit
+Branch(config)#int fa0/0
+Branch(config-if)#exit
+Branch(config)#
+Branch con0 is now available
+Press RETURN to get started.
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+User Access Verification
+
+Password: 
+Password: 
+
+Branch>en
+Password: 
+Branch#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Branch(config)#ip route 0.0.0.0 0.0.0.0
+% Incomplete command.
+Branch(config)#ip route 0.0.0.0 0.0.0.0
+% Incomplete command.
+Branch(config)#ip route 0.0.0.0 0.0.0.0 se0/0/0
+Branch(config)#

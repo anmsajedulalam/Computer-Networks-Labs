@@ -1,0 +1,28 @@
+S2>en
+S2#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+S2(config)#vlan 10
+S2(config-vlan)#name Faculty/Staff
+S2(config-vlan)#exit
+S2(config)#vlan 20
+S2(config-vlan)#name Students
+S2(config-vlan)#exit
+S2(config)#vlan 30
+S2(config-vlan)#name Guest(Default)
+S2(config-vlan)#exit
+S2(config)#vlan 99
+S2(config-vlan)#name Management&Native
+S2(config-vlan)#exit
+S2(config)#int fa0/11
+S2(config-if)#switchport access vlan 10
+S2(config-if)#exit
+S2(config)#vlan 20
+S2(config-vlan)#exit
+S2(config)#int fa0/18
+S2(config-if)#switchport access vlan 20
+S2(config-if)#exit
+S2(config)#vlan 30
+S2(config-vlan)#exit
+S2(config)#int fa0/6
+S2(config-if)#switchport access vlan 30
+S2(config-if)#exit

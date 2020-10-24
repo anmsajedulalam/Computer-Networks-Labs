@@ -1,0 +1,25 @@
+S3>en
+S3#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+S3(config)#vlan 10
+S3(config-vlan)#name Faculty/Staff
+S3(config-vlan)#exit
+S3(config)#vlan 20
+S3(config-vlan)#name Students
+S3(config-vlan)#exit
+S3(config)#vlan 30
+S3(config-vlan)#name Guest(Default)
+S3(config-vlan)#exit
+S3(config)#vlan 99
+S3(config-vlan)#name Management&Native
+S3(config-vlan)#exit
+S3(config)#int fa0/11
+S3(config-if)#switchport access vlan 10
+S3(config-if)#exit
+S3(config)#int fa0/18
+S3(config-if)#switchport access vlan 20
+S3(config-if)#exit
+S3(config)#int fa0/6
+S3(config-if)#switchport access vlan 30
+S3(config-if)#exit
+S3(config)#

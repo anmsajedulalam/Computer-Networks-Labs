@@ -1,0 +1,79 @@
+Router>en
+Router#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname HQ
+HQ(config)#no ip domain lookup
+HQ(config)#banner motd &Maintenace on Friday 5th Dec&   
+HQ(config)#banner login #Authourized Users Only#
+HQ(config)#line console 0
+HQ(config-line)#
+HQ(config-line)#logging synchronous
+HQ(config-line)#exit
+HQ(config)#line console 0
+HQ(config-line)#password cisco
+HQ(config-line)#login
+HQ(config-line)#exit
+HQ(config)#line vty 0 4
+HQ(config-line)#password cisco
+HQ(config-line)#exec-timeout 15 5
+HQ(config-line)#exit
+HQ(config)#int se0/0/0
+HQ(config-if)#ip add 192.168.2.130 255.255.255.192
+HQ(config-if)#exit
+HQ(config)#int fa0/0
+HQ(config-if)#ip add 192.168.2.194 255.255.255.192
+HQ(config-if)#exit
+HQ(config)#
+
+HQ con0 is now available
+
+Press RETURN to get started.
+
+Maintenace on Friday 5th Dec
+Authourized Users Only
+
+User Access Verification
+
+Password: 
+Password: 
+
+HQ>en
+HQ#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+HQ(config)#int fa0/0
+HQ(config-if)#ip add 192.168.2.65 255.255.255.192
+HQ(config-if)#no shutdown
+
+HQ(config-if)#
+%LINK-5-CHANGED: Interface FastEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+
+HQ(config-if)#exit
+HQ(config)#int se0/0/0
+HQ(config-if)#no shutdown
+
+HQ(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+HQ(config-if)#clock rate 
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+HQ(config-if)#clock rate 64000
+HQ(config-if)#exit
+HQ(config)#int se0/0/1
+HQ(config-if)#ip add 209.165.201.2 255.255.255.252
+HQ(config-if)#no shutdown
+
+HQ(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to up
+
+HQ(config-if)#exit
+HQ(config)#
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to up
+
+
+HQ(config)#ip route 209.165.200.224 255.255.255.224 209.165.201.1
+HQ(config)#ip route 192.168.2.192 255.255.255.192 se0/0/0
+HQ(config)#ip route 0.0.0.0 0.0.0.0 209.165.201.1
+HQ(config)#

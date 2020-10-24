@@ -1,0 +1,40 @@
+ISP>en
+ISP#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP(config)#int fa0/0
+ISP(config-if)#ip add 209.165.200.225 255.255.255.224 
+ISP(config-if)#exit
+	
+ISP(config)#int S/0/0/0
+
+ISP con0 is now available
+
+Press RETURN to get started.
+
+ISP>en
+ISP#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP(config)#line 0
+No physical hardware support for line 2
+ISP(config)#line console 0
+ISP(config-line)#password cisco
+ISP(config-line)#password class
+ISP(config-line)#password cisco
+ISP(config-line)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+ISP con0 is now available
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+

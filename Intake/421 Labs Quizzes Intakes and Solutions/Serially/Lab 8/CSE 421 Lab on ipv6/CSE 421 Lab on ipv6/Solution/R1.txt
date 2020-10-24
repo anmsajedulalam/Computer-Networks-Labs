@@ -1,0 +1,227 @@
+hostname R1
+!
+!
+!
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
+!
+!
+!
+!
+!
+ip cef
+ipv6 unicast-routing
+!
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO1941/K9 sn FTX1524ADT7
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ description toR2
+ no ip address
+ duplex auto
+ speed auto
+ ipv6 address FE80::1 link-local
+ ipv6 address 2001:DB8:ACAD:2::1/64
+!
+interface GigabitEthernet0/1
+ description toLAN
+ no ip address
+ duplex auto
+ speed auto
+ ipv6 address FE80::1 link-local
+ ipv6 address 2001:DB8:ACAD:1::1/64
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+ipv6 route ::/0 2001:DB8:ACAD:2::2
+!
+!
+banner motd ^CNo unauthorized access allowed!^C
+!
+!
+!
+!
+line con 0
+ password 7 0822455D0A16
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password 7 0822455D0A16
+ login
+!
+!
+!
+end
+
+
+R1#
+R1#
+R1#
+R1#
+R1#
+R1#
+R1#
+R1#
+R1#
+R1#
+R1#
+R1#show ipv6 route
+IPv6 Routing Table - 6 entries
+Codes: C - Connected, L - Local, S - Static, R - RIP, B - BGP
+       U - Per-user Static route, M - MIPv6
+       I1 - ISIS L1, I2 - ISIS L2, IA - ISIS interarea, IS - ISIS summary
+       O - OSPF intra, OI - OSPF inter, OE1 - OSPF ext 1, OE2 - OSPF ext 2
+       ON1 - OSPF NSSA ext 1, ON2 - OSPF NSSA ext 2
+       D - EIGRP, EX - EIGRP external
+S   ::/0 [1/0]
+     via 2001:DB8:ACAD:2::2
+C   2001:DB8:ACAD:1::/64 [0/0]
+     via GigabitEthernet0/1, directly connected
+L   2001:DB8:ACAD:1::1/128 [0/0]
+     via GigabitEthernet0/1, receive
+C   2001:DB8:ACAD:2::/64 [0/0]
+     via GigabitEthernet0/0, directly connected
+L   2001:DB8:ACAD:2::1/128 [0/0]
+     via GigabitEthernet0/0, receive
+L   FF00::/8 [0/0]
+     via Null0, receive
+R1#show ipv6 int brief
+GigabitEthernet0/0         [up/up]
+    FE80::1
+    2001:DB8:ACAD:2::1
+GigabitEthernet0/1         [up/up]
+    FE80::1
+    2001:DB8:ACAD:1::1
+Vlan1                      [administratively down/down]
+R1#
+
+
+
+
+
+
+
+
+R1 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+No unauthorized access allowed!
+
+User Access Verification
+
+Password: 
+% Password:  timeout expired!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Press RETURN to get started!
+
+No unauthorized access allowed!
+
+User Access Verification
+
+Password: 
+
+R1>class
+Translating "class"...domain server (255.255.255.255)
+% Unknown command or computer name, or unable to find computer address
+
+R1>en
+Password: 
+R1#config
+Configuring from terminal, memory, or network [terminal]? 
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#ping 2001:DB8:ACAD:2::2/64
+            ^
+% Invalid input detected at '^' marker.
+	
+R1(config)#ping 2001:DB8:ACAD:2::2
+            ^
+% Invalid input detected at '^' marker.
+	
+R1(config)#
+
+
+
+
+
+
+
+
+R1 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+

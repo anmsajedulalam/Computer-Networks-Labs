@@ -1,0 +1,227 @@
+R2#
+%SYS-5-CONFIG_I: Configured from console by console
+
+R2#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R2#show running-config
+Building configuration...
+
+Current configuration : 853 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname R2
+!
+!
+!
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
+!
+!
+!
+!
+!
+ip cef
+ipv6 unicast-routing
+!
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO1941/K9 sn FTX152418UT
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ description toLAN
+ no ip address
+ duplex auto
+ speed auto
+ ipv6 address FE80::2 link-local
+ ipv6 address 2001:DB8:ACAD:2::1/64
+!
+interface GigabitEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^CNo unauthorized access allowed!^C
+!
+!
+!
+!
+line con 0
+ password 7 0822455D0A16
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password 7 0822455D0A16
+ login
+!
+!
+!
+end
+
+
+R2#
+R2#
+R2#
+R2#
+R2#
+R2#
+R2#
+R2#
+R2#
+R2#
+R2#show ipv6 route
+IPv6 Routing Table - 3 entries
+Codes: C - Connected, L - Local, S - Static, R - RIP, B - BGP
+       U - Per-user Static route, M - MIPv6
+       I1 - ISIS L1, I2 - ISIS L2, IA - ISIS interarea, IS - ISIS summary
+       O - OSPF intra, OI - OSPF inter, OE1 - OSPF ext 1, OE2 - OSPF ext 2
+       ON1 - OSPF NSSA ext 1, ON2 - OSPF NSSA ext 2
+       D - EIGRP, EX - EIGRP external
+C   2001:DB8:ACAD:2::/64 [0/0]
+     via GigabitEthernet0/0, directly connected
+L   2001:DB8:ACAD:2::1/128 [0/0]
+     via GigabitEthernet0/0, receive
+L   FF00::/8 [0/0]
+     via Null0, receive
+R2#show ipv6 int brief
+GigabitEthernet0/0         [up/up]
+    FE80::2
+    2001:DB8:ACAD:2::1
+GigabitEthernet0/1         [administratively down/down]
+Vlan1                      [administratively down/down]
+R2#
+
+
+
+
+
+
+
+
+R2 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+No unauthorized access allowed!
+
+User Access Verification
+
+Password: 
+
+R2>en
+Password: 
+R2#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R2(config)#int g0/0
+R2(config-if)#description toR1
+R2(config-if)#no shut
+R2(config-if)#exit
+R2(config)#int g0/1
+R2(config-if)#ipv6 address FE80::2 link-local
+R2(config-if)#ipv6 address 2001:DB8:ACAD:1::1/64
+R2(config-if)#description toLAN
+R2(config-if)#no shut\
+                     ^
+% Invalid input detected at '^' marker.
+	
+R2(config-if)#no shut
+
+R2(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+R2(config-if)#exit
+R2(config)#ipv6 route ::/0 2001:DB8:ACAD:2::2
+R2(config)#exit
+R2#
+%SYS-5-CONFIG_I: Configured from console by console
+
+R2#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R2(config)#int g0/0
+R2(config-if)#ipv6 address 2001:DB8:ACAD:2::2/64
+R2(config-if)#exit
+R2(config)#int g0/1
+R2(config-if)#ipv6 address 2001:DB8:ACAD:3::1/64
+R2(config-if)#
+
+
+
+
+
+
+
+
+R2 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
