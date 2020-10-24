@@ -1,0 +1,103 @@
+S3>en
+S3#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+S3(config)#vlan 88
+S3(config-vlan)#exit
+S3(config)#int vlan 88
+S3(config-if)#
+%LINK-5-CHANGED: Interface Vlan88, changed state to up
+S3(config-if)#ip add 172.31.88.4 255.255.255.0
+S3(config-if)#no shutdown
+S3(config-if)#exit	
+S3(config)#ip default-gateway 172.31.88.1
+S3(config)#vlan 10
+S3(config-vlan)#name Sales
+S3(config-vlan)#exit
+S3(config)#vlan 20
+S3(config-vlan)#name Production
+S3(config-vlan)#exit
+S3(config)#vlan 30
+S3(config-vlan)#name Marketing
+S3(config-vlan)#exit
+S3(config)#vlan 88
+S3(config-vlan)#name Management
+S3(config-vlan)#exit
+S3(config)#vlan 99
+S3(config-vlan)#name Native
+S3(config-vlan)#exit
+S3(config)#vlan 10
+S3(config-vlan)#int range fa0/7-12
+S3(config-if-range)#switchport access vlan 10
+S3(config-if-range)#exit
+S3(config)#vlan 20
+S3(config-vlan)#int range fa0/13-20
+S3(config-if-range)#switchport access vlan 20
+S3(config-if-range)#exit
+S3(config)#vlan 30
+S3(config-vlan)#int range fa0/1-6
+S3(config-if-range)#switchport access vlan 30
+S3(config-if-range)#exit
+S3(config)#int g0/2
+S3(config-if)#switchport trunk native vlan 99
+S3(config-if)#%SPANTREE-2-UNBLOCK_CONSIST_PORT: Unblocking GigabitEthernet0/2 on VLAN0099. Port consistency restored.
+%SPANTREE-2-UNBLOCK_CONSIST_PORT: Unblocking GigabitEthernet0/2 on VLAN0001. Port consistency restored.
+S3(config-if)#switchport trunk allowed vlan 10,20,30,88,99
+S3(config-if)#switchport mode trunk
+S3(config-if)#
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to down
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to up
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan88, changed state to up
+S3(config-if)#switchport nonegotiate
+S3(config-if)#exit
+S3(config)#enable secret itsasecret
+S3(config)#line console 0
+S3(config-line)#password letmein
+S3(config-line)#exit
+S3(config)#line vty 0 15
+S3(config-line)#password c1$c0	
+S3(config-line)#exit	
+S3(config)#service password-encryption
+S3(config)#banner motd #Authorized Access Only!!#
+S3(config)#int range fa0/21-24,g0/1-2
+S3(config-if-range)#shutdown
+%LINK-5-CHANGED: Interface FastEthernet0/21, changed state to administratively down
+%LINK-5-CHANGED: Interface FastEthernet0/22, changed state to administratively down
+%LINK-5-CHANGED: Interface FastEthernet0/23, changed state to administratively down
+%LINK-5-CHANGED: Interface FastEthernet0/24, changed state to administratively down
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to administratively down
+S3(config-if-range)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/2, changed state to administratively down
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to down
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan88, changed state to down
+S3(config-if-range)#exit
+S3(config)#int fa0/6
+S3(config-if)#switchport port-security
+Command rejected: FastEthernet0/6 is a dynamic port.
+S3(config-if)#shutdown
+S3(config-if)#
+%LINK-5-CHANGED: Interface FastEthernet0/6, changed state to administratively down
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/6, changed state to down
+S3(config-if)#switchport port-security
+Command rejected: FastEthernet0/6 is a dynamic port.
+S3(config-if)#no shut
+S3(config-if)#
+%LINK-5-CHANGED: Interface FastEthernet0/6, changed state to up
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/6, changed state to up
+S3(config-if)#switchport port-security max 2
+S3(config-if)#switchport mode access
+S3(config-if)#switchport port-security violation restrict	
+S3(config-if)#switchport port-security mac-address
+% Incomplete command.
+S3(config-if)#exit
+S3(config)#int fa0/14
+S3(config-if)#shutdown
+%LINK-5-CHANGED: Interface FastEthernet0/14, changed state to administratively down
+S3(config-if)#exit
+S3(config)#int fa0/4
+S3(config-if)#shutdown
+%LINK-5-CHANGED: Interface FastEthernet0/4, changed state to administratively down
+S3(config-if)#exit
+S3(config)#int fa0/6
+S3(config-if)#switchport mode access 
+S3(config-if)#switchport port-security
+S3(config-if)#switchport port-security mac-address sticky
